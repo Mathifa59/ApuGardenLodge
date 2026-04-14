@@ -1,69 +1,96 @@
-import React from 'react';
-import { Wifi, Coffee, Mountain, Map } from 'lucide-react';
-import imgCusco from '../assets/Cusco.jpg';
-import imgUrubamba from '../assets/Urubamba.jpg';
+import { motion } from 'framer-motion';
+import { fadeUp, staggerContainer } from '../lib/animations';
+import { Wifi, Sunrise, Mountain, MapPin, Leaf, UtensilsCrossed } from 'lucide-react';
+
+const experiences = [
+  {
+    icon: Sunrise,
+    title: 'Desayuno Andino Artesanal',
+    desc: 'Ingredientes orgánicos del valle, preparados con recetas ancestrales cada mañana.',
+  },
+  {
+    icon: Mountain,
+    title: 'Vistas que Inspiran',
+    desc: 'Despierta frente a los nevados y el río Vilcanota desde tu habitación.',
+  },
+  {
+    icon: MapPin,
+    title: 'Expediciones Privadas',
+    desc: 'Rutas exclusivas a Machu Picchu, Moray y las salineras con guías expertos.',
+  },
+  {
+    icon: Leaf,
+    title: 'Jardines Medicinales',
+    desc: 'Paseos entre plantas nativas y hierbas aromáticas del ecosistema andino.',
+  },
+  {
+    icon: UtensilsCrossed,
+    title: 'Gastronomía de Altura',
+    desc: 'Cocina de autor que fusiona tradición cusqueña con técnicas contemporáneas.',
+  },
+  {
+    icon: Wifi,
+    title: 'Conectividad sin Interrupciones',
+    desc: 'Fibra óptica de alta velocidad para quienes necesitan estar conectados.',
+  },
+];
 
 const Experiences = () => {
-  const iconStyle = { width: '40px', height: '40px', color: '#8B5A2B', marginBottom: '15px' };
-  
   return (
-    <section className="container" style={{ padding: '80px 20px', backgroundColor: '#fff' }}>
-      
-      {/* TÍTULOS CENTRADOS */}
-      <h2 className="section-title">Experiencias</h2>
-      
-      {/* Aquí aplicamos la clase del CSS que tiene text-align: center */}
-      <p className="section-subtitle">
-        Todo lo que necesitas para una estadía inolvidable en el Valle Sagrado
-      </p>
+    <section id="experiences" className="bg-cream-dark py-28 sm:py-36 lg:py-40">
+      <div className="max-w-7xl mx-auto px-6 lg:px-12">
+        {/* Header */}
+        <motion.div
+          variants={staggerContainer}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: '-80px' }}
+          className="text-center mb-20"
+        >
+          <motion.p
+            variants={fadeUp}
+            className="text-sand text-[11px] uppercase tracking-[0.4em] font-sans font-medium mb-4"
+          >
+            Experiencias
+          </motion.p>
+          <motion.h2
+            variants={fadeUp}
+            className="font-serif text-ink text-4xl sm:text-5xl lg:text-[56px] font-light leading-tight"
+          >
+            Cada detalle, una
+            <br />
+            <span className="italic text-brown-deep">invitación a sentir</span>
+          </motion.h2>
+        </motion.div>
 
-      {/* ICONOS */}
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '30px', textAlign: 'center', marginBottom: '80px' }}>
-        <div>
-          <Wifi style={iconStyle} />
-          <h4 style={{ marginBottom: '10px' }}>Wi-Fi Gratuito</h4>
-          <p style={{ fontSize: '14px', color: '#666' }}>Conexión de alta velocidad</p>
-        </div>
-        <div>
-          <Coffee style={iconStyle} />
-          <h4 style={{ marginBottom: '10px' }}>Desayuno Andino</h4>
-          <p style={{ fontSize: '14px', color: '#666' }}>Ingredientes locales frescos</p>
-        </div>
-        <div>
-          <Mountain style={iconStyle} />
-          <h4 style={{ marginBottom: '10px' }}>Vistas Privilegiadas</h4>
-          <p style={{ fontSize: '14px', color: '#666' }}>Frente a las montañas</p>
-        </div>
-        <div>
-          <Map style={iconStyle} />
-          <h4 style={{ marginBottom: '10px' }}>Tours Privados</h4>
-          <p style={{ fontSize: '14px', color: '#666' }}>Coordinación directa</p>
-        </div>
-      </div>
-
-      {/* TOURS */}
-      <h3 className="section-title" style={{ fontSize: '2rem', marginTop: '60px' }}>Explora el Valle</h3>
-      
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '30px', marginTop: '40px' }}>
-        
-        {/* CARD CUSCO */}
-        <div style={{ position: 'relative', height: '350px', borderRadius: '8px', overflow: 'hidden', boxShadow: '0 5px 15px rgba(0,0,0,0.1)' }}>
-            <img src={imgCusco} alt="Cusco Tours" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
-            <div style={{ position: 'absolute', bottom: 0, left: 0, width: '100%', padding: '30px', background: 'linear-gradient(to top, rgba(0,0,0,0.8), transparent)', color: 'white' }}>
-                <h3 style={{fontSize: '1.5rem'}}>Ciudad del Cusco</h3>
-                <p style={{opacity: 0.9, marginTop: '5px'}}>Descubre la magia de la capital imperial.</p>
-            </div>
-        </div>
-
-        {/* CARD URUBAMBA */}
-        <div style={{ position: 'relative', height: '350px', borderRadius: '8px', overflow: 'hidden', boxShadow: '0 5px 15px rgba(0,0,0,0.1)' }}>
-            <img src={imgUrubamba} alt="Urubamba Experience" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
-             <div style={{ position: 'absolute', bottom: 0, left: 0, width: '100%', padding: '30px', background: 'linear-gradient(to top, rgba(0,0,0,0.8), transparent)', color: 'white' }}>
-                <h3 style={{fontSize: '1.5rem'}}>Naturaleza en Urubamba</h3>
-                <p style={{opacity: 0.9, marginTop: '5px'}}>Caminatas y conexión con el río Vilcanota.</p>
-            </div>
-        </div>
-
+        {/* Grid */}
+        <motion.div
+          variants={staggerContainer}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: '-60px' }}
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-10"
+        >
+          {experiences.map((exp, i) => (
+            <motion.div
+              key={i}
+              variants={fadeUp}
+              className="group bg-cream/80 rounded-xl p-8 lg:p-10 hover:bg-cream hover:shadow-xl transition-all duration-500 border border-transparent hover:border-sand/20"
+            >
+              <exp.icon
+                size={28}
+                strokeWidth={1.2}
+                className="text-sand mb-6 group-hover:text-brown-deep transition-colors duration-300"
+              />
+              <h3 className="font-serif text-xl lg:text-2xl text-ink mb-3 font-medium">
+                {exp.title}
+              </h3>
+              <p className="text-ink-muted text-[15px] leading-relaxed font-light">
+                {exp.desc}
+              </p>
+            </motion.div>
+          ))}
+        </motion.div>
       </div>
     </section>
   );

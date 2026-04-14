@@ -1,53 +1,202 @@
-import React, { useRef, useState } from 'react';
+import { useRef, useState } from 'react';
+import { motion } from 'framer-motion';
+import { fadeUp, slideInLeft, slideInRight, staggerContainer } from '../lib/animations';
+import { MapPin, Phone, Mail, Clock } from 'lucide-react';
 import emailjs from '@emailjs/browser';
+
+const contactInfo = [
+  { icon: MapPin, label: 'Dirección', value: 'Calle López Escobar n° 610, Urubamba' },
+  { icon: Phone, label: 'Teléfono', value: '+51 (084) 9491' },
+  { icon: Mail, label: 'Email', value: 'reservas@apugardenlodge.com' },
+  { icon: Clock, label: 'Recepción', value: '24 horas, los 7 días' },
+];
 
 const ContactForm = () => {
   const form = useRef();
   const [status, setStatus] = useState('');
+  const [sending, setSending] = useState(false);
 
   const sendEmail = (e) => {
     e.preventDefault();
-    setStatus('Enviando...');
+    setSending(true);
+    setStatus('');
 
-    emailjs.sendForm(
-      import.meta.env.VITE_EMAILJS_SERVICE_ID,
-      import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
-      form.current,
-      import.meta.env.VITE_EMAILJS_PUBLIC_KEY
-    )
-      .then(() => {
-          setStatus('¡Mensaje enviado con éxito!');
+    emailjs
+      .sendForm(
+        import.meta.env.VITE_EMAILJS_SERVICE_ID,
+        import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
+        form.current,
+        import.meta.env.VITE_EMAILJS_PUBLIC_KEY
+      )
+      .then(
+        () => {
+          setStatus('success');
           form.current.reset();
-      }, (error) => {
-          console.error(error);
-          setStatus('Hubo un error. Intenta más tarde.');
-      });
+          setSending(false);
+        },
+        () => {
+          setStatus('error');
+          setSending(false);
+        }
+      );
   };
 
-  const styles = {
-    container: { maxWidth: '500px', margin: '2rem auto', padding: '2rem', backgroundColor: '#f9f9f9', borderRadius: '8px', boxShadow: '0 2px 5px rgba(0,0,0,0.1)' },
-    title: { color: '#8B5A2B', textAlign: 'center', marginBottom: '1rem' },
-    input: { width: '100%', padding: '10px', marginBottom: '10px', borderRadius: '4px', border: '1px solid #ccc' },
-    button: { width: '100%', padding: '10px', backgroundColor: '#8B5A2B', color: 'white', border: 'none', cursor: 'pointer', borderRadius: '4px' }
-  };
+  const inputClasses =
+    'w-full bg-transparent border border-ink/10 rounded-xl px-5 py-4 text-ink font-sans text-[15px] focus:outline-none focus:border-sand transition-colors duration-300 placeholder:text-ink-muted/50';
 
   return (
-    <div style={styles.container}>
-      <h2 style={styles.title}>Escríbenos</h2>
-      <form ref={form} onSubmit={sendEmail}>
-        <label>Nombre:</label>
-        <input type="text" name="name" required style={styles.input} />
+    <section id="contact" className="bg-cream py-28 sm:py-36 lg:py-40">
+      <div className="max-w-7xl mx-auto px-6 lg:px-12">
+        {/* Header */}
+        <motion.div
+          variants={staggerContainer}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: '-80px' }}
+          className="text-center mb-20"
+        >
+          <motion.p
+            variants={fadeUp}
+            className="text-sand text-[11px] uppercase tracking-[0.4em] font-sans font-medium mb-4"
+          >
+            Contacto
+          </motion.p>
+          <motion.h2
+            variants={fadeUp}
+            className="font-serif text-ink text-4xl sm:text-5xl lg:text-[56px] font-light leading-tight"
+          >
+            Estamos listos para
+            <br />
+            <span className="italic text-brown-deep">recibirte</span>
+          </motion.h2>
+        </motion.div>
 
-        <label>Email:</label>
-        <input type="email" name="email" required style={styles.input} />
+        {/* Two Column Layout */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24">
+          {/* Left — Info */}
+          <motion.div
+            variants={staggerContainer}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: '-80px' }}
+            className="flex flex-col justify-center"
+          >
+            <motion.p
+              variants={slideInLeft}
+              className="text-ink-light text-lg leading-[1.9] font-light mb-12"
+            >
+              Ya sea que busques planificar tu estadía, consultar disponibilidad
+              o simplemente saber más sobre nuestras experiencias, estaremos
+              encantados de ayudarte.
+            </motion.p>
 
-        <label>Mensaje:</label>
-        <textarea name="message" required rows="4" style={styles.input} />
+            <div className="space-y-8">
+              {contactInfo.map((item, i) => (
+                <motion.div
+                  key={i}
+                  variants={slideInLeft}
+                  className="flex items-start gap-5"
+                >
+                  <div className="w-10 h-10 rounded-full bg-sand/10 flex items-center justify-center shrink-0 mt-0.5">
+                    <item.icon size={18} strokeWidth={1.5} className="text-sand" />
+                  </div>
+                  <div>
+                    <p className="text-ink-muted text-[11px] uppercase tracking-[0.2em] mb-1">
+                      {item.label}
+                    </p>
+                    <p className="text-ink text-[15px]">{item.value}</p>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </motion.div>
 
-        <button type="submit" style={styles.button}>Enviar</button>
-      </form>
-      <p style={{textAlign:'center', marginTop:'10px'}}>{status}</p>
-    </div>
+          {/* Right — Form Card */}
+          <motion.div
+            variants={slideInRight}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: '-80px' }}
+          >
+            <div className="bg-cream-dark/50 border border-ink/5 rounded-2xl p-8 sm:p-10 lg:p-12 shadow-sm">
+              <form ref={form} onSubmit={sendEmail} className="space-y-5">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                  <div>
+                    <label className="block text-ink-muted text-[11px] uppercase tracking-[0.2em] mb-2">
+                      Nombre
+                    </label>
+                    <input
+                      type="text"
+                      name="name"
+                      required
+                      placeholder="Tu nombre"
+                      className={inputClasses}
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-ink-muted text-[11px] uppercase tracking-[0.2em] mb-2">
+                      Email
+                    </label>
+                    <input
+                      type="email"
+                      name="email"
+                      required
+                      placeholder="tu@email.com"
+                      className={inputClasses}
+                    />
+                  </div>
+                </div>
+
+                <div>
+                  <label className="block text-ink-muted text-[11px] uppercase tracking-[0.2em] mb-2">
+                    Asunto
+                  </label>
+                  <input
+                    type="text"
+                    name="subject"
+                    placeholder="Consulta de disponibilidad"
+                    className={inputClasses}
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-ink-muted text-[11px] uppercase tracking-[0.2em] mb-2">
+                    Mensaje
+                  </label>
+                  <textarea
+                    name="message"
+                    required
+                    rows="5"
+                    placeholder="Cuéntanos sobre tu viaje ideal..."
+                    className={`${inputClasses} resize-none`}
+                  />
+                </div>
+
+                <button
+                  type="submit"
+                  disabled={sending}
+                  className="w-full bg-brown-deep text-cream font-sans text-[13px] uppercase tracking-[0.2em] font-medium py-4 rounded-xl hover:bg-brown-warm hover:scale-[1.02] active:scale-[0.98] transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed mt-2"
+                >
+                  {sending ? 'Enviando...' : 'Enviar Mensaje'}
+                </button>
+
+                {/* Status Messages */}
+                {status === 'success' && (
+                  <p className="text-center text-green-700 text-sm mt-3">
+                    ¡Mensaje enviado con éxito! Te responderemos pronto.
+                  </p>
+                )}
+                {status === 'error' && (
+                  <p className="text-center text-red-600 text-sm mt-3">
+                    Hubo un error. Por favor, intenta nuevamente.
+                  </p>
+                )}
+              </form>
+            </div>
+          </motion.div>
+        </div>
+      </div>
+    </section>
   );
 };
 
