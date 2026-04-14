@@ -1,6 +1,8 @@
 import { motion } from 'framer-motion';
 import { fadeUp, staggerContainer, easePremium } from '../lib/animations';
 
+const BASE = import.meta.env.BASE_URL;
+
 const Hero = () => {
   return (
     <section id="home" className="relative h-screen w-full overflow-hidden">
@@ -12,7 +14,7 @@ const Hero = () => {
         muted
         playsInline
       >
-        <source src="/Sumaq/video-hero.mp4" type="video/mp4" />
+        <source src={`${BASE}video-hero.mp4`} type="video/mp4" />
       </video>
 
       {/* Overlay gradient */}
