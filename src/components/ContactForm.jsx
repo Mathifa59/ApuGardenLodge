@@ -45,7 +45,7 @@ const ContactForm = () => {
     'w-full bg-transparent border border-ink/10 rounded-xl px-5 py-4 text-ink font-sans text-[15px] focus:outline-none focus:border-sand transition-colors duration-300 placeholder:text-ink-muted/50';
 
   return (
-    <section id="contact" className="bg-cream py-28 sm:py-36 lg:py-40">
+    <section id="contact" className="bg-cream py-20 sm:py-24 lg:py-28">
       <div className="max-w-7xl mx-auto px-6 lg:px-12">
         {/* Header */}
         <motion.div
@@ -53,7 +53,7 @@ const ContactForm = () => {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: '-80px' }}
-          className="text-center mb-20"
+          className="text-center mb-14"
         >
           <motion.p
             variants={fadeUp}

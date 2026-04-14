@@ -37,7 +37,7 @@ const experiences = [
 
 const Experiences = () => {
   return (
-    <section id="experiences" className="bg-cream-dark py-28 sm:py-36 lg:py-40">
+    <section id="experiences" className="bg-cream-dark py-20 sm:py-24 lg:py-28">
       <div className="max-w-7xl mx-auto px-6 lg:px-12">
         {/* Header */}
         <motion.div
@@ -45,7 +45,7 @@ const Experiences = () => {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: '-80px' }}
-          className="text-center mb-20"
+          className="text-center mb-14"
         >
           <motion.p
             variants={fadeUp}

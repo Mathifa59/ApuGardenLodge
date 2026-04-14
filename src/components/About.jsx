@@ -7,7 +7,7 @@ import imgEntrada from '../assets/Entrada Hotel.jpg';
 
 const About = () => {
   return (
-    <section id="about" className="bg-cream py-28 sm:py-36 lg:py-40 overflow-hidden">
+    <section id="about" className="bg-cream py-16 sm:py-20 lg:py-24 overflow-hidden">
       <div className="max-w-7xl mx-auto px-6 lg:px-12">
         {/* Section Label */}
         <motion.div
@@ -15,7 +15,7 @@ const About = () => {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: '-80px' }}
-          className="text-center mb-20"
+          className="text-center mb-14"
         >
           <motion.p
             variants={fadeUp}

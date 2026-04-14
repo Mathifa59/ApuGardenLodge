@@ -49,12 +49,12 @@ const Navbar = () => {
           </a>
 
           {/* Desktop Links */}
-          <ul className="hidden lg:flex items-center gap-10">
+          <ul className="hidden xl:flex items-center gap-8">
             {links.map((link) => (
               <li key={link.href}>
                 <a
                   href={link.href}
-                  className="text-cream/80 hover:text-sand text-[13px] uppercase tracking-[0.2em] font-medium transition-colors duration-300"
+                  className="text-cream/80 hover:text-sand text-[12px] uppercase tracking-[0.15em] font-medium transition-colors duration-300 whitespace-nowrap"
                 >
                   {link.label}
                 </a>
@@ -65,7 +65,7 @@ const Navbar = () => {
           {/* CTA Desktop */}
           <a
             href="#contact"
-            className="hidden lg:inline-block border border-sand/40 text-sand text-[12px] uppercase tracking-[0.2em] px-6 py-2.5 hover:bg-sand hover:text-brown-deep transition-all duration-300"
+            className="hidden xl:inline-block border border-sand/40 text-sand text-[11px] uppercase tracking-[0.15em] px-5 py-2.5 hover:bg-sand hover:text-brown-deep transition-all duration-300 whitespace-nowrap"
           >
             Reservar
           </a>
@@ -73,7 +73,7 @@ const Navbar = () => {
           {/* Mobile Toggle */}
           <button
             onClick={() => setMobileOpen(!mobileOpen)}
-            className="lg:hidden text-cream p-2"
+            className="xl:hidden text-cream p-2"
             aria-label="Toggle menu"
           >
             {mobileOpen ? <X size={24} /> : <Menu size={24} />}

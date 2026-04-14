@@ -18,7 +18,7 @@ const images = [
 
 const Gallery = () => {
   return (
-    <section id="gallery" className="bg-cream py-28 sm:py-36 lg:py-40">
+    <section id="gallery" className="bg-cream py-20 sm:py-24 lg:py-28">
       <div className="max-w-7xl mx-auto px-6 lg:px-12">
         {/* Header */}
         <motion.div
@@ -26,7 +26,7 @@ const Gallery = () => {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: '-80px' }}
-          className="text-center mb-16"
+          className="text-center mb-12"
         >
           <motion.p
             variants={fadeUp}

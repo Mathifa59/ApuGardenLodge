@@ -21,7 +21,7 @@ const Emotional = () => {
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, margin: '-100px' }}
-        className="relative z-10 py-32 sm:py-40 lg:py-52 px-6 lg:px-12 max-w-4xl mx-auto text-center"
+        className="relative z-10 py-24 sm:py-28 lg:py-36 px-6 lg:px-12 max-w-4xl mx-auto text-center"
       >
         <motion.p
           variants={fadeUp}

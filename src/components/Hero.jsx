@@ -25,7 +25,7 @@ const Hero = () => {
         variants={staggerContainer}
         initial="hidden"
         animate="visible"
-        className="relative z-2 h-full flex flex-col items-center justify-center text-center px-6"
+        className="relative z-2 h-full flex flex-col items-center justify-center text-center px-6 pt-20 pb-12"
       >
         {/* Label */}
         <motion.p
@@ -38,7 +38,7 @@ const Hero = () => {
         {/* Title */}
         <motion.h1
           variants={fadeUp}
-          className="font-serif text-cream text-5xl sm:text-6xl md:text-7xl lg:text-[80px] font-light leading-[1.05] max-w-4xl"
+          className="font-serif text-cream text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-light leading-[1.05] max-w-4xl"
         >
           Despierta en el corazón
           <br />
@@ -48,7 +48,7 @@ const Hero = () => {
         {/* Subtitle */}
         <motion.p
           variants={fadeUp}
-          className="text-cream/70 text-base sm:text-lg font-sans font-light max-w-xl mt-6 leading-relaxed"
+          className="text-cream/70 text-base sm:text-lg font-sans font-light max-w-xl mt-4 leading-relaxed"
         >
           Una experiencia de descanso, naturaleza y exclusividad
           donde los Andes abrazan tu despertar
@@ -57,7 +57,7 @@ const Hero = () => {
         {/* Booking Widget — Glassmorphism */}
         <motion.div
           variants={fadeUp}
-          className="mt-12 w-full max-w-2xl"
+          className="mt-8 w-full max-w-2xl"
         >
           <div className="bg-white/10 backdrop-blur-xl border border-white/15 rounded-2xl p-6 sm:p-8 shadow-2xl">
             <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 items-end">
@@ -98,22 +98,6 @@ const Hero = () => {
         </motion.div>
       </motion.div>
 
-      {/* Scroll indicator */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1.5, duration: 1 }}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 z-2 flex flex-col items-center gap-2"
-      >
-        <span className="text-cream/40 text-[10px] uppercase tracking-[0.3em] font-sans">
-          Descubre
-        </span>
-        <motion.div
-          animate={{ y: [0, 8, 0] }}
-          transition={{ repeat: Infinity, duration: 1.8, ease: 'easeInOut' }}
-          className="w-px h-8 bg-linear-to-b from-cream/40 to-transparent"
-        />
-      </motion.div>
     </section>
   );
 };
